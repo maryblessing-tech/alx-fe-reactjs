@@ -1,4 +1,4 @@
-import UserDetails from './UserDetails';
+import UserProfile from './UserProfile';
 
 function UserInfo() {
   return (
@@ -15,7 +15,7 @@ function UserInfo() {
       }}>
         User Information
       </h3>
-      <UserDetails />
+      <UserProfile />
     </div>
   );
 }

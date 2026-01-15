@@ -1,11 +1,33 @@
-const UserProfile = (props) => {
+import { useContext } from 'react';
+import UserContext from '../UserContext';
+
+function UserProfile() {
+  // Consume the UserContext using useContext hook
+  const userData = useContext(UserContext);
+
   return (
-    <div style={{ border: "1px solid gray", padding: "10px" }}>
-      <h2 style={{ color: "blue" }}>{props.name}</h2>
-      <p>Age: <span style={{ fontWeight: "bold" }}>{props.age}</span></p>
-      <p>Bio: {props.bio}</p>
+    <div style={{
+      backgroundColor: 'white',
+      padding: '20px',
+      borderRadius: '6px',
+      border: '1px solid #bdc3c7'
+    }}>
+      <p style={{
+        fontSize: '1.1rem',
+        marginBottom: '10px',
+        color: '#2c3e50'
+      }}>
+        <strong>Name:</strong> {userData.name}
+      </p>
+      <p style={{
+        fontSize: '1.1rem',
+        marginBottom: '0',
+        color: '#2c3e50'
+      }}>
+        <strong>Email:</strong> {userData.email}
+      </p>
     </div>
   );
-};
+}
 
 export default UserProfile;
