@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import useRecipeStore from './recipeStore';  // Changed from '../recipeStore'
+import useRecipeStore from '../recipeStore';
 import EditRecipeForm from './EditRecipeForm';
 import DeleteRecipeButton from './DeleteRecipeButton';
 
@@ -34,6 +34,20 @@ const RecipeDetails = () => {
       </div>
     );
   }
+
+  const favorites = useRecipeStore((state) => state.favorites);
+  const addFavorite = useRecipeStore((state) => state.addFavorite);
+  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
+  
+  const isFavorite = favorites.includes(recipe.id);
+  
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      removeFavorite(recipe.id);
+    } else {
+      addFavorite(recipe.id);
+    }
+  };
 
   return (
     <div style={{
@@ -82,8 +96,24 @@ const RecipeDetails = () => {
         <div style={{
           display: 'flex',
           gap: '10px',
-          justifyContent: 'flex-end'
+          justifyContent: 'space-between',
+          alignItems: 'center'
         }}>
+          <button
+            onClick={toggleFavorite}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: isFavorite ? '#e74c3c' : '#95a5a6',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '1rem',
+              fontWeight: 'bold'
+            }}
+          >
+            {isFavorite ? '❤️ Remove from Favorites' : '🤍 Add to Favorites'}
+          </button>
           <DeleteRecipeButton recipeId={recipe.id} />
         </div>
       </div>
