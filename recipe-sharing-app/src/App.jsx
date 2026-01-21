@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
@@ -41,7 +42,9 @@ function App() {
               element={
                 <>
                   <AddRecipeForm />
-                  <div style={{ margin: '40px 0' }}></div>
+                  <div style={{ margin: '30px 0' }}></div>
+                  <SearchBar />
+                  <div style={{ margin: '20px 0' }}></div>
                   <RecipeList />
                 </>
               } 
