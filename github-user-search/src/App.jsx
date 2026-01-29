@@ -1,9 +1,8 @@
-import Search from "./components/Search";
+import Search from './components/Search';
 
 function App() {
   return (
-    <div>
-      <h1>GitHub User Search</h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
       <Search />
     </div>
   );
