@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchAdvancedUserData = async (username, location, minRepos) => {
+export const fetchUserData = async (username, location, minRepos) => {
   // Build the query string
   let query = username || "";
   if (location) query += `+location:${location}`;
