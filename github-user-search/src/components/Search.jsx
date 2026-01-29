@@ -1,92 +1,85 @@
-import { useState } from 'react';
-import { searchUsers } from '../services/githubService';
+import { useState } from "react";
+import { fetchAdvancedUserData } from "../services/githubService";
 
-const Search = () => {
-  const [query, setQuery] = useState('');
-  const [location, setLocation] = useState('');
-  const [minRepos, setMinRepos] = useState('');
+function Search() {
+  const [username, setUsername] = useState("");
+  const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState("");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSearch = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError(false);
+    setUsers([]);
+
     try {
-      const results = await searchUsers(query, location, minRepos);
-      setUsers(results.items || []);
-    } catch (error) {
-      console.error('Search failed:', error);
+      const data = await fetchAdvancedUserData(username, location, minRepos);
+      if (data.items.length === 0) {
+        setError(true);
+      } else {
+        setUsers(data.items);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-8">
-      <form onSubmit={handleSearch} className="bg-white rounded-xl shadow-lg p-8 mb-8">
-        <div className="grid md:grid-cols-3 gap-6">
-          <input
-            type="text"
-            placeholder="Username"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="p-3 border rounded-lg"
-            required
-          />
-          <input
-            type="text"
-            placeholder="Location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            className="p-3 border rounded-lg"
-          />
-          <div className="flex gap-2">
-            <input
-              type="number"
-              placeholder="Min Repos"
-              value={minRepos}
-              onChange={(e) => setMinRepos(e.target.value)}
-              className="p-3 border rounded-lg flex-1"
-              min="0"
-            />
-            <button 
-              type="submit" 
-              disabled={loading} 
-              className="bg-blue-600 text-white p-3 rounded-lg px-6 whitespace-nowrap"
-            >
-              {loading ? 'Searching...' : 'Search'}
-            </button>
-          </div>
-        </div>
+    <div className="p-6 max-w-xl mx-auto">
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <input
+          className="w-full p-2 border rounded"
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="w-full p-2 border rounded"
+          type="text"
+          placeholder="Location (optional)"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <input
+          className="w-full p-2 border rounded"
+          type="number"
+          placeholder="Minimum repositories (optional)"
+          value={minRepos}
+          onChange={(e) => setMinRepos(e.target.value)}
+        />
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          type="submit"
+        >
+          Search
+        </button>
       </form>
 
-      {users.length > 0 && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {users.map((user) => (
-            <div key={user.id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all">
-              <img 
-                src={user.avatar_url} 
-                alt={user.login} 
-                className="w-20 h-20 rounded-full mx-auto mb-4 shadow-md" 
-              />
-              <h3 className="font-bold text-lg text-center mb-2">{user.login}</h3>
-              <p className="text-gray-600 text-center mb-4">{user.public_repos} repos</p>
-              {user.location && (
-                <p className="text-sm text-gray-500 text-center mb-4">📍 {user.location}</p>
-              )}
-              <a 
-                href={user.html_url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block bg-blue-600 text-white text-center py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors mx-auto w-fit"
-              >
+      {loading && <p className="mt-4">Loading...</p>}
+      {error && <p className="mt-4 text-red-500">Looks like we cant find users</p>}
+
+      <div className="mt-6 space-y-4">
+        {users.map((user) => (
+          <div key={user.id} className="flex items-center space-x-4 border p-2 rounded">
+            <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
+            <div>
+              <h3 className="font-bold">{user.login}</h3>
+              <p>Type: {user.type}</p>
+              <a href={user.html_url} target="_blank" rel="noreferrer" className="text-blue-500">
                 View Profile
               </a>
             </div>
-          ))}
-        </div>
-      )}
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default Search;
