@@ -57,13 +57,13 @@ function AddRecipeForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8 px-4">
-      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+    <div className="min-h-screen bg-gray-100 py-8 px-4 md:px-8">
+      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6 md:p-8">
         <Link to="/" className="inline-block mb-6 text-blue-500 hover:text-blue-600 font-semibold">
           ← Back to Home
         </Link>
         
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">Add New Recipe</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Add New Recipe</h1>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -116,7 +116,7 @@ function AddRecipeForm() {
           
           <button
             type="submit"
-            className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200"
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-200 transform hover:scale-105"
           >
             Submit Recipe
           </button>
