@@ -14,7 +14,7 @@ function AddRecipeForm() {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: e.target.value
     }));
   };
 

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import recipesData from '../data.json';
@@ -14,9 +13,11 @@ function RecipeDetail() {
   }, [id]);
 
   if (!recipe) {
-    return <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <p className="text-xl text-gray-600">Recipe not found...</p>
-    </div>;
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <p className="text-xl text-gray-600">Recipe not found...</p>
+      </div>
+    );
   }
 
   return (
@@ -36,24 +37,18 @@ function RecipeDetail() {
             <div className="bg-blue-50 p-6 rounded-lg">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">Ingredients</h2>
               <ul className="list-disc list-inside space-y-2 text-gray-700">
-                <li>200g Spaghetti</li>
-                <li>100g Pancetta or Bacon</li>
-                <li>2 Large Eggs</li>
-                <li>50g Parmesan Cheese</li>
-                <li>Black Pepper</li>
-                <li>Salt</li>
+                {recipe.ingredients && recipe.ingredients.map((ingredient, index) => (
+                  <li key={index}>{ingredient}</li>
+                ))}
               </ul>
             </div>
             
             <div className="bg-green-50 p-6 rounded-lg">
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">Instructions</h2>
               <ol className="list-decimal list-inside space-y-3 text-gray-700">
-                <li>Cook spaghetti according to package instructions</li>
-                <li>Fry pancetta until crispy</li>
-                <li>Beat eggs with parmesan cheese</li>
-                <li>Combine hot pasta with pancetta</li>
-                <li>Add egg mixture and toss quickly</li>
-                <li>Season with black pepper and serve</li>
+                {recipe.instructions && recipe.instructions.map((instruction, index) => (
+                  <li key={index}>{instruction}</li>
+                ))}
               </ol>
             </div>
           </div>

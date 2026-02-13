@@ -3,24 +3,93 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "200g Spaghetti",
+      "100g Pancetta or Bacon",
+      "2 Large Eggs",
+      "50g Parmesan Cheese",
+      "Black Pepper",
+      "Salt"
+    ],
+    "instructions": [
+      "Cook spaghetti according to package instructions",
+      "Fry pancetta until crispy",
+      "Beat eggs with parmesan cheese",
+      "Combine hot pasta with pancetta",
+      "Add egg mixture and toss quickly",
+      "Season with black pepper and serve"
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "500g Chicken breast",
+      "200ml Yogurt",
+      "2 tbsp Tikka masala paste",
+      "400ml Coconut cream",
+      "1 Onion",
+      "2 cloves Garlic",
+      "Fresh coriander"
+    ],
+    "instructions": [
+      "Marinate chicken in yogurt and tikka paste for 2 hours",
+      "Grill chicken until charred",
+      "Sauté onion and garlic",
+      "Add coconut cream and bring to simmer",
+      "Add grilled chicken and cook for 10 minutes",
+      "Garnish with fresh coriander"
+    ]
   },
   {
     "id": 3,
     "title": "Caesar Salad",
     "summary": "A green salad of romaine lettuce and croutons dressed with lemon juice, olive oil, egg, Worcestershire sauce, anchovies, garlic, Dijon mustard, Parmesan cheese, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "1 head Romaine lettuce",
+      "100g Parmesan cheese",
+      "2 cups Croutons",
+      "4 Anchovy fillets",
+      "2 cloves Garlic",
+      "1 Egg yolk",
+      "Lemon juice",
+      "Olive oil"
+    ],
+    "instructions": [
+      "Wash and chop romaine lettuce",
+      "Make dressing with anchovy, garlic, egg yolk, and lemon",
+      "Toss lettuce with dressing",
+      "Add croutons and parmesan",
+      "Season with black pepper",
+      "Serve immediately"
+    ]
   },
   {
     "id": 4,
     "title": "Beef Tacos",
     "summary": "Soft or hard shell tacos filled with seasoned ground beef, lettuce, cheese, and salsa.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "500g Ground beef",
+      "8 Taco shells",
+      "1 cup Shredded cheese",
+      "1 cup Lettuce",
+      "1 Tomato",
+      "Taco seasoning",
+      "Sour cream",
+      "Salsa"
+    ],
+    "instructions": [
+      "Brown ground beef in a pan",
+      "Add taco seasoning and water",
+      "Simmer until thickened",
+      "Warm taco shells",
+      "Fill shells with beef",
+      "Top with cheese, lettuce, tomato, and salsa"
+    ]
   }
 ]
