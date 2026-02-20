@@ -12,9 +12,10 @@ function PostsComponent() {
   const { data, error, isLoading, isError, refetch, isFetching } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPosts,
-    staleTime: 60000, // Data stays fresh for 1 minute
-    cacheTime: 300000, // Cache persists for 5 minutes
-    refetchOnWindowFocus: true
+    staleTime: 60000,
+    cacheTime: 300000,
+    refetchOnWindowFocus: true,
+    keepPreviousData: true
   });
 
   if (isLoading) {
@@ -90,14 +91,14 @@ function PostsComponent() {
         <h3>React Query Features Demo:</h3>
         <ul>
           <li>✅ Data is cached for 5 minutes</li>
-          <li>✅ Data stays fresh for 1 minute (no refetch needed)</li>
-          <li>✅ Click "Refetch Posts" to manually update data</li>
-          <li>✅ Navigate away and come back - data loads from cache instantly!</li>
-          <li>✅ Refetch on window focus is enabled</li>
+          <li>✅ Data stays fresh for 1 minute</li>
+          <li>✅ keepPreviousData: Shows old data while refetching</li>
+          <li>✅ Click "Refetch Posts" to manually update</li>
+          <li>✅ Navigate away and back - instant load from cache!</li>
         </ul>
       </div>
     </div>
   );
 }
 
-export default PostsComponent;
+export default
