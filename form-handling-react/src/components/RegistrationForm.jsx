@@ -1,34 +1,31 @@
 import { useState } from 'react';
 
 function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: ''
-  });
-
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    
+    if (name === 'username') setUsername(value);
+    if (name === 'email') setEmail(value);
+    if (name === 'password') setPassword(value);
   };
 
   const validate = () => {
     const newErrors = {};
 
-    if (!formData.username) {
+    if (!username) {
       newErrors.username = 'Username is required';
     }
 
-    if (!formData.email) {
+    if (!email) {
       newErrors.email = 'Email is required';
     }
 
-    if (!formData.password) {
+    if (!password) {
       newErrors.password = 'Password is required';
     }
 
@@ -41,13 +38,12 @@ function RegistrationForm() {
     const validationErrors = validate();
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Form submitted:', formData);
+      console.log('Form submitted:', { username, email, password });
       alert('User registered successfully!');
-      setFormData({
-        username: '',
-        email: '',
-        password: ''
-      });
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setErrors({});
     } else {
       setErrors(validationErrors);
     }
@@ -62,7 +58,7 @@ function RegistrationForm() {
           <input
             type="text"
             name="username"
-            value={formData.username}
+            value={username}
             onChange={handleChange}
             style={{ width: '100%', padding: '8px', fontSize: '14px' }}
           />
@@ -74,7 +70,7 @@ function RegistrationForm() {
           <input
             type="email"
             name="email"
-            value={formData.email}
+            value={email}
             onChange={handleChange}
             style={{ width: '100%', padding: '8px', fontSize: '14px' }}
           />
@@ -86,7 +82,7 @@ function RegistrationForm() {
           <input
             type="password"
             name="password"
-            value={formData.password}
+            value={password}
             onChange={handleChange}
             style={{ width: '100%', padding: '8px', fontSize: '14px' }}
           />
