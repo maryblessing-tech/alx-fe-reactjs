@@ -5,6 +5,7 @@ import TodoList from "../components/TodoList";
 describe("TodoList Component", () => {
   test("renders initial todos", () => {
     render(<TodoList />);
+    // ✅ Must check for exact initial todos
     expect(screen.getByText("Learn React")).toBeInTheDocument();
     expect(screen.getByText("Write Tests")).toBeInTheDocument();
   });
@@ -15,6 +16,7 @@ describe("TodoList Component", () => {
     const addButton = screen.getByText("Add");
     fireEvent.change(input, { target: { value: "Test Todo" } });
     fireEvent.click(addButton);
+    // ✅ Must assert the new todo appears
     expect(screen.getByText("Test Todo")).toBeInTheDocument();
   });
 
@@ -22,6 +24,7 @@ describe("TodoList Component", () => {
     render(<TodoList />);
     const todoItem = screen.getByText("Learn React");
     fireEvent.click(todoItem);
+    // ✅ Must assert text-decoration changes
     expect(todoItem).toHaveStyle("text-decoration: line-through");
   });
 
@@ -29,6 +32,7 @@ describe("TodoList Component", () => {
     render(<TodoList />);
     const deleteButtons = screen.getAllByText("Delete");
     fireEvent.click(deleteButtons[0]);
+    // ✅ Must assert the todo is removed
     expect(screen.queryByText("Learn React")).not.toBeInTheDocument();
   });
 });
