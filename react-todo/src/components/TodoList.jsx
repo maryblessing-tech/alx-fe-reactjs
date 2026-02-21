@@ -1,20 +1,21 @@
-// src/components/TodoList.jsx
-import { useState } from "react";
+import { useState } from 'react';
 
-const TodoList = () => {
-  // ✅ Initial todos (checker requires at least 2)
+function TodoList() {
   const [todos, setTodos] = useState([
-    { id: 1, text: "Learn React", completed: false },
-    { id: 2, text: "Write Tests", completed: false },
+    { id: 1, text: 'Learn React', completed: false },
+    { id: 2, text: 'Build Todo App', completed: false },
+    { id: 3, text: 'Master Testing', completed: false }
   ]);
 
-  // ✅ Function to add a todo
   const addTodo = (text) => {
-    const newTodo = { id: Date.now(), text, completed: false };
+    const newTodo = {
+      id: Date.now(),
+      text: text,
+      completed: false
+    };
     setTodos([...todos, newTodo]);
   };
 
-  // ✅ Function to toggle completion
   const toggleTodo = (id) => {
     setTodos(
       todos.map((todo) =>
@@ -23,7 +24,6 @@ const TodoList = () => {
     );
   };
 
-  // ✅ Function to delete a todo
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
@@ -38,17 +38,20 @@ const TodoList = () => {
             key={todo.id}
             onClick={() => toggleTodo(todo.id)}
             style={{
-              cursor: "pointer",
-              textDecoration: todo.completed ? "line-through" : "none",
-              marginBottom: "5px",
+              textDecoration: todo.completed ? 'line-through' : 'none',
+              cursor: 'pointer',
+              padding: '10px',
+              margin: '5px 0',
+              backgroundColor: '#f0f0f0'
             }}
           >
-            {todo.text}{" "}
+            {todo.text}
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 deleteTodo(todo.id);
               }}
+              style={{ marginLeft: '10px' }}
             >
               Delete
             </button>
@@ -57,30 +60,30 @@ const TodoList = () => {
       </ul>
     </div>
   );
-};
+}
 
-// ✅ AddTodoForm must be included inside the same file
-const AddTodoForm = ({ addTodo }) => {
-  const [value, setValue] = useState("");
+function AddTodoForm({ addTodo }) {
+  const [input, setInput] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!value) return;
-    addTodo(value);
-    setValue("");
+    if (input.trim()) {
+      addTodo(input);
+      setInput('');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder="New Todo"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Add a new todo"
       />
-      <button type="submit">Add</button>
+      <button type="submit">Add Todo</button>
     </form>
   );
-};
+}
 
 export default TodoList;
